@@ -1,0 +1,90 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapitre 1 - Mon Livre</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      color: #333;
+      padding: 20px;
+      user-select: none; /* Disable text selection */
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #d4af37; /* Golden color */
+      text-align: center;
+    }
+    p {
+      text-align: justify;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Chapitre 1</h1>
+    <p>
+      <!-- Collez le texte du chapitre ici -->
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec fringilla purus. Nulla facilisi. Donec eu augue arcu. Aliquam erat volutpat. Suspendisse potenti. Cras sagittis, magna a semper hendrerit, orci lorem aliquam metus, nec pulvinar ligula felis vel augue. Fusce accumsan scelerisque diam, et cursus odio dictum sed. Integer interdum urna sed turpis bibendum, id sollicitudin felis pretium. Donec auctor, eros ut blandit pharetra, sem augue convallis metus, in vulputate purus nulla eget arcu.
+    </p>
+  </div>
+  <script>
+    // Empêcher le copier-coller
+    document.addEventListener('copy', function(e) {
+      e.preventDefault();
+    });
+
+    document.addEventListener('cut', function(e) {
+      e.preventDefault();
+    });
+
+    document.addEventListener('paste', function(e) {
+      e.preventDefault();
+    });
+
+    // Empêcher le clic droit
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+
+    // Empêcher l'impression
+    function beforePrint(e) {
+      alert('L\'impression est désactivée pour ce document.');
+      e.preventDefault();
+    }
+
+    window.addEventListener('beforeprint', beforePrint);
+
+    // Empêcher la capture d'écran (partiellement possible)
+    document.addEventListener('keydown', function(e) {
+      if (e.keyCode == 44) { // Touche 'Impr écran'
+        alert('La capture d\'écran est désactivée.');
+        e.preventDefault();
+      }
+    });
+
+    // Empêcher le téléchargement du fichier PDF
+    const iframe = document.querySelector('iframe');
+    if (iframe) {
+      iframe.addEventListener('load', function() {
+        const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+        iframeDocument.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+        });
+        iframeDocument.body.style.userSelect = "none";
+      });
+    }
+  </script>
+</body>
+</html>
+```
